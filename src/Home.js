@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import config from "./config";
+import { Link } from "react-router-dom";
 
 class Home extends Component {
   constructor() {
@@ -11,7 +12,6 @@ class Home extends Component {
   }
   componentDidMount() {
     const nowPlayingUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${config.apiKey}`;
-    const singleMovieUrl = "https://api.themoviedb.org/3/movie/";
 
     axios.get(nowPlayingUrl).then((respone) => {
       //console.log(respone.data);
@@ -27,7 +27,9 @@ class Home extends Component {
     const movieGrid = this.state.movieList.map((movie, index) => {
       return (
         <div className="col s3" key={index}>
-          <img src={`${imageUrl}${movie.poster_path}`} />
+          <Link to={`/movie/${movie.id}`}>
+            <img src={`${imageUrl}${movie.poster_path}`} />
+          </Link>
         </div>
       );
     });
