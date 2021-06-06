@@ -25,9 +25,13 @@ class Home extends Component {
     console.log(this.state.movieList);
     const imageUrl = "http://image.tmdb.org/t/p/w300";
     const movieGrid = this.state.movieList.map((movie, index) => {
-      return <div key={index}>{`${imageUrl}${movie.poster_path}`}</div>;
+      return (
+        <div className="col s3" key={index}>
+          <img src={`${imageUrl}${movie.poster_path}`} />
+        </div>
+      );
     });
-    return <div>{movieGrid}</div>;
+    return <div className="row">{movieGrid}</div>;
   }
 }
 
